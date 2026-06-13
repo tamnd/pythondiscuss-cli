@@ -1,0 +1,10 @@
+title       = "pd"
+baseURL     = "https://pythondiscuss-cli.tamnd.com/"
+description = "Browse Python community discussions on discuss.python.org"
+contentDir  = "content"
+outputDir   = "public"
+theme       = "tago-doks"
+syntaxHighlight = "true"
+
+[params]
+github = "https://github.com/tamnd/pythondiscuss-cli"
