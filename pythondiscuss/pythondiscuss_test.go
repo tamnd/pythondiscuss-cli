@@ -31,7 +31,7 @@ func TestLatest(t *testing.T) {
 					"like_count":  38,
 					"posts_count": 45,
 					"category_id": 3,
-					"tags":        []string{"pep", "syntax"},
+					"tags":        []map[string]any{{"id": 1, "name": "pep", "slug": "pep"}, {"id": 2, "name": "syntax", "slug": "syntax"}},
 				},
 				{
 					"id":          1002,
@@ -42,7 +42,7 @@ func TestLatest(t *testing.T) {
 					"like_count":  20,
 					"posts_count": 20,
 					"category_id": 5,
-					"tags":        []string{},
+					"tags":        []map[string]any{},
 				},
 			},
 		},
@@ -99,7 +99,7 @@ func TestTop(t *testing.T) {
 					"like_count":  200,
 					"posts_count": 102,
 					"category_id": 1,
-					"tags":        []string{},
+					"tags":        []map[string]any{},
 				},
 			},
 		},
@@ -141,7 +141,7 @@ func TestSearch(t *testing.T) {
 				"like_count":  10,
 				"posts_count": 17,
 				"category_id": 2,
-				"tags":        []string{"typing"},
+				"tags":        []map[string]any{{"id": 3, "name": "typing", "slug": "typing"}},
 			},
 		},
 	}
@@ -179,7 +179,7 @@ func TestGetTopic(t *testing.T) {
 		"like_count":  8,
 		"posts_count": 7,
 		"category_id": 3,
-		"tags":        []string{},
+		"tags":        []map[string]any{},
 		"post_stream": map[string]any{
 			"posts": []map[string]any{
 				{

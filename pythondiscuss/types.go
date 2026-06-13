@@ -50,31 +50,37 @@ type topicListResp struct {
 	} `json:"topic_list"`
 }
 
+type wireTag struct {
+	ID   int    `json:"id"`
+	Name string `json:"name"`
+	Slug string `json:"slug"`
+}
+
 type wireTopic struct {
-	ID         int      `json:"id"`
-	Title      string   `json:"title"`
-	CreatedAt  string   `json:"created_at"`
-	BumpedAt   string   `json:"bumped_at"`
-	Views      int      `json:"views"`
-	ReplyCount int      `json:"reply_count"`
-	LikeCount  int      `json:"like_count"`
-	PostsCount int      `json:"posts_count"`
-	CategoryID int      `json:"category_id"`
-	Tags       []string `json:"tags"`
-	Pinned     bool     `json:"pinned"`
-	Excerpt    string   `json:"excerpt"`
+	ID         int       `json:"id"`
+	Title      string    `json:"title"`
+	CreatedAt  string    `json:"created_at"`
+	BumpedAt   string    `json:"bumped_at"`
+	Views      int       `json:"views"`
+	ReplyCount int       `json:"reply_count"`
+	LikeCount  int       `json:"like_count"`
+	PostsCount int       `json:"posts_count"`
+	CategoryID int       `json:"category_id"`
+	Tags       []wireTag `json:"tags"`
+	Pinned     bool      `json:"pinned"`
+	Excerpt    string    `json:"excerpt"`
 }
 
 type topicDetailResp struct {
-	ID         int      `json:"id"`
-	Title      string   `json:"title"`
-	CreatedAt  string   `json:"created_at"`
-	Views      int      `json:"views"`
-	ReplyCount int      `json:"reply_count"`
-	LikeCount  int      `json:"like_count"`
-	PostsCount int      `json:"posts_count"`
-	CategoryID int      `json:"category_id"`
-	Tags       []string `json:"tags"`
+	ID         int       `json:"id"`
+	Title      string    `json:"title"`
+	CreatedAt  string    `json:"created_at"`
+	Views      int       `json:"views"`
+	ReplyCount int       `json:"reply_count"`
+	LikeCount  int       `json:"like_count"`
+	PostsCount int       `json:"posts_count"`
+	CategoryID int       `json:"category_id"`
+	Tags       []wireTag `json:"tags"`
 	PostStream struct {
 		Posts []wirePost `json:"posts"`
 	} `json:"post_stream"`
@@ -129,7 +135,11 @@ func topicURL(id int) string {
 }
 
 func wireTopicToTopic(w wireTopic) Topic {
-	tags := strings.Join(w.Tags, ", ")
+	tagNames := make([]string, len(w.Tags))
+	for i, t := range w.Tags {
+		tagNames[i] = t.Name
+	}
+	tags := strings.Join(tagNames, ", ")
 	return Topic{
 		ID:         w.ID,
 		Title:      w.Title,
